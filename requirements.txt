@@ -1,0 +1,4 @@
+Django==1.9.1
+django-wysiwyg-redactor==0.4.9
+Pillow==2.9.0
+wheel==0.24.0
