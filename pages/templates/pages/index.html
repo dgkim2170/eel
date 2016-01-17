@@ -1,0 +1,535 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>EEL Yonsei</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{% static "plugins/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/one.style.css" %}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{% static "css/footers/footer-v7.css" %}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static "plugins/animate.css" %}">
+    <link rel="stylesheet" href="{% static "plugins/line-icons/line-icons.css" %}">
+    <link rel="stylesheet" href="{% static "plugins/font-awesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="assets/plugins/pace/pace-flash.css">
+    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="{% static "plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css" %}">
+    <link rel="stylesheet" href="{% static "plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css" %}">
+    <link rel="stylesheet" href="assets/plugins/login-signup-modal-window/css/style.css">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="assets/css/theme-skins/one.dark.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+    <!--=== Header ===-->
+    <nav class="one-page-header one-page-header-style-2 navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="menu-container page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#intro">
+                    <!-- <span>E</span>nvironmental
+                    <span>E</span>ngineering
+                    <span>L</span>ab -->
+                    EEL
+                    <!-- <img src="assets/img/logo1.png" alt="Logo"> -->
+                </a>
+            </div>
+
+            <!-- <div class="log-reg-block-simple cd-log_reg">
+                <a class="btn-u cd-signin" href="javascript:void(0);">Login</a>
+            </div>
+
+            <div class="top-contact-block">
+                <i class="fa fa-phone fa-1"></i> <a href="tel:0 800 2000 123">0 800 2000 123</a>
+            </div> -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="menu-container">
+                    <ul class="nav navbar-nav">
+                        <li class="page-scroll home">
+                            <a href="#body">Home</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#research">Research</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#faculty">Faculty</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#members">Members</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#publications">Publications</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#calender">Calender</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#photos">Photos</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#news">News Coverage</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!--=== End Header ===-->
+
+    <!-- Promo block BEGIN -->
+    <section class="promo-section" id="intro">
+        <!-- Fullscreen Static Image BEGIN -->
+        <div class="fullscreen-static-image fullheight">
+            <!-- Promo Content BEGIN -->
+            <div class="container valign__middle">
+                <div class="row">
+                  <div class="col-sm-10 col-sm-offset-1 text-center-xs">
+                    <h2>{{intro.title}}
+                    {% if user.is_staff %}
+                    <a href="{% url "admin:pages_intro_change" intro.id %}"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                    </h2>
+                    <div class="promo-text">
+                        {{intro.content}}
+                    </div>
+                    <!-- <div class="promo-next">
+                        <span class="page-scroll"><a class="btn-u btn-brd btn-brd-hover btn-u-light" href="#about">Learn More</a></span>
+                        <span class="page-scroll"><a class="btn-u btn-brd btn-brd-hover btn-u-light" href="#portfolio">Our Work</a></span>
+                    </div> -->
+                  </div>
+                </div>
+            </div>
+          <!-- Promo Content END -->
+        </div>
+        <!-- Fullscreen Static Image END -->
+    </section>
+    <!-- Promo block END -->
+
+    <!-- Colorful Service Blocks -->
+    <!-- <section class="container-fluid">
+        <div class="row no-gutter equal-height-columns margin-bottom-10">
+            <div class="col-sm-4">
+                <div class="service-block service-block-purple no-margin-bottom content equal-height-column" style="height: 239px;">
+                    <i class="icon-custom icon-md rounded icon-color-light icon-line icon-badge"></i>
+                    <h2 class="heading-md font-light">Best Solutions</h2>
+                    <p class="no-margin-bottom font-light">Provide; shifting landscape reduce carbon emissions human potential sustainability Jane Addams solve. Global network; care Rockefeller, vaccines equal opportunity human being.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-block-red no-margin-bottom content equal-height-column" style="height: 239px;">
+                    <i class="icon-custom icon-md rounded icon-color-light icon-line icon-fire"></i>
+                    <h2 class="heading-md font-light">Excellent Features</h2>
+                    <p class="no-margin-bottom font-light">Provide; shifting landscape reduce carbon emissions human potential sustainability Jane Addams solve. Global network; care Rockefeller, vaccines equal opportunity human being.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-block-aqua no-margin-bottom content equal-height-column" style="height: 239px;">
+                    <i class="icon-custom icon-md rounded icon-color-light icon-line icon-directions"></i>
+                    <h2 class="heading-md font-light">Creative Ideas</h2>
+                    <p class="no-margin-bottom font-light">Provide; shifting landscape reduce carbon emissions human potential sustainability Jane Addams solve. Global network; care Rockefeller, vaccines equal opportunity human being.</p>
+                </div>
+            </div>
+        </div>        
+    </section> -->
+    <!-- End Colorful Service Blocks -->
+
+    <section id="research">
+        <!-- Our Vision And Mission -->
+        <!-- <div class="bg-color-light"> -->
+            <div class="container content-lg">
+                <div class="title-v1">
+                    <h2>Research</h2>
+                    <p>Lorem Ipsum is simply <strong>dummy</strong> text of the printing and typesetting industry.<br/>Lorem Ipsum has been the industry's</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 content-boxes-v3 padding-top-20">
+                        {% for res in researchleft %}
+                        <div class="clearfix margin-bottom-30">
+                            <i class="icon-custom icon-md rounded-x icon-bg-u fa fa-{{res.icon}}"></i>
+                            <div class="content-boxes-in-v3">
+                                <h2 class="heading-sm">{{res.title}}</h2>
+                                <p>{{res.content}}
+                                {% if user.is_staff %}
+                                <a href="{% url "admin:pages_researchleft_change" res.id %}"><i class="fa fa-gear"></i></a>
+                                {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% if user.is_staff %}
+                        <a href="{% url "admin:pages_researchleft_add" %}"><i class="fa fa-plus"></i></a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 content-boxes-v3 padding-top-20">
+                        {% for res in researchright %}
+                        <div class="clearfix margin-bottom-30">
+                            <i class="icon-custom icon-md rounded-x icon-bg-u fa fa-{{res.icon}}"></i>
+                            <div class="content-boxes-in-v3">
+                                <h2 class="heading-sm">{{res.title}}</h2>
+                                <p>{{res.content}}
+                                {% if user.is_staff %}
+                                <a href="{% url "admin:pages_researchright_change" res.id %}"><i class="fa fa-gear"></i></a>
+                                {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% if user.is_staff %}
+                        <a href="{% url "admin:pages_researchright_add" %}"><i class="fa fa-plus"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Our Vision And Mission -->
+    </section>
+
+    <section id="faculty">
+        <!-- Team Block -->
+        <div class="team-v1 content-lg bg-color-light">
+            <div class="container">
+                <div class="title-v1">
+                    <h2>Faculty</h2>
+                    <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
+                </div>
+
+                {% for prof in faculty %}
+                {% if forloop.counter0 == 0 %}
+                <div class="row team-v6">
+                {% elif forloop.counter0|divisibleby:"4"%}
+                </div>
+                <div class="row team-v6">
+                {% endif %}
+                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                    <img alt="" src="{{prof.photo.url}}" class="img-responsive">
+                    <span>{{prof.name}}
+                    {% if user.is_staff %}
+                    <a href="{% url "admin:pages_faculty_change" prof.id %}"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                    </span>
+                    <small>{{prof.position}}</small>
+                    <p>{{prof.content}}</p>
+                    <p>{{prof.email}}</p>
+                    <!-- <ul class="list-inline social-icons-v1">
+                        <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+                    </ul> -->
+                </div>
+                {% if forloop.last %}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% if user.is_staff %}
+                <a href="{% url "admin:pages_faculty_add" %}"><i class="fa fa-plus"></i></a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- End Team Block -->
+    </section>
+
+
+    <section id="members">
+        <!-- Team Block -->
+        <div class="team-v1 content-lg">
+            <div class="container">
+                <div class="title-v1">
+                    <h2>Members</h2>
+                    <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
+                </div>
+            </div>
+        </div>
+        <!-- End Team Block -->
+    </section>
+
+    <section id="publications">
+        <!-- Testimonials -->
+        <div class="what-people-say bg-color-light">
+            <div class="container content-lg">
+                <div class="title-v1">
+                    <h2>Publications</h2>
+                    <p>We do <strong>things</strong> differently company providing key digital services. <br>
+                    Focused on helping our clients to build a <strong>successful</strong> business on web and mobile.</p>
+                </div>
+
+                <!-- Testimonials Wrap -->
+                <div class="testimonials-v6 testimonials-wrap">
+                    <div class="testimonials-info rounded-bottom">
+                        <!-- <img alt="" src="assets/img/testimonials/img6.jpg" class="rounded-x"> -->
+                        <div class="testimonials-desc">
+                            <strong>Sara Lisbon</strong>
+                            <span>Designer</span>
+                            <p>Donec quis lorem sit amet nibh tempor porttitor non eu justo. Fusce iaculis scelerisque nibh at rhoncus. Aliquam blandit.</p>
+                        </div>
+                    </div>
+                    <div class="testimonials-info rounded-bottom">
+                        <!-- <img alt="" src="assets/img/testimonials/img6.jpg" class="rounded-x"> -->
+                        <div class="testimonials-desc">
+                            <strong>Sara Lisbon</strong>
+                            <span>Designer</span>
+                            <p>Donec quis lorem sit amet nibh tempor porttitor non eu justo. Fusce iaculis scelerisque nibh at rhoncus. Aliquam blandit.</p>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-50">
+                        <div class="col-md-6 md-margin-bottom-50">
+                            <div class="testimonials-info rounded-bottom">
+                                <!-- <img alt="" src="assets/img/testimonials/img5.jpg" class="rounded-x"> -->
+                                <div class="testimonials-desc">
+                                    <strong>Evan Bohringer</strong>
+                                    <span>Web Developer</span>
+                                    <p>Donec quis lorem sit amet nibh tempor porttitor non eu justo. Fusce iaculis scelerisque nibh at rhoncus. Aliquam blandit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="testimonials-info rounded-bottom">
+                                <!-- <img alt="" src="assets/img/testimonials/img6.jpg" class="rounded-x"> -->
+                                <div class="testimonials-desc">
+                                    <strong>Sara Lisbon</strong>
+                                    <span>Designer</span>
+                                    <p>Donec quis lorem sit amet nibh tempor porttitor non eu justo. Fusce iaculis scelerisque nibh at rhoncus. Aliquam blandit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/end row-->
+
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-6 md-margin-bottom-50">
+                            <div class="testimonials-info rounded-bottom">
+                                <!-- <img alt="" src="assets/img/testimonials/img3.jpg" class="rounded-x"> -->
+                                <div class="testimonials-desc">
+                                    <strong>Alice Williams</strong>
+                                    <span>Web Developer</span>
+                                    <p>Donec quis lorem sit amet nibh tempor porttitor non eu justo. Fusce iaculis scelerisque nibh at rhoncus. Aliquam blandit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="testimonials-info rounded-bottom">
+                                <!-- <img alt="" src="assets/img/testimonials/img2.jpg" class="rounded-x"> -->
+                                <div class="testimonials-desc">
+                                    <strong>Jane Wearne</strong>
+                                    <span>Technical Direector</span>
+                                    <p>Donec quis lorem sit amet nibh tempor porttitor non eu justo. Fusce iaculis scelerisque nibh at rhoncus. Aliquam blandit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/end row-->
+                </div>
+                <!-- End Testimonials Wrap -->
+            </div><!--/end container-->
+        </div>
+        <!-- End Testimonials -->
+    </section>
+
+    <!-- Calender Section -->
+    <section id="calender">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Calender</h2>
+            </div>
+        </div>
+    </section>
+    <!-- End Calender Section -->
+
+    <!-- Portfolio Section -->
+    <section id="photos" class="bg-color-light">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Photos</h2>
+            </div>
+        </div>
+    </section>
+    <!-- End Portfolio Section -->
+
+    <!-- Latest News -->
+    <section id="news">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>News Coverage</h2>
+            </div>
+        </div>        
+    </section>
+    <!-- End Latest News -->
+
+    <!-- Contacts BEGIN -->
+    <section id="contact" class="contacts-section2 bg-color-light">
+        <div class="container content">
+            <div class="title-v1">
+                <h2>Contact Us{% if user.is_staff %}
+                <a href="{% url "admin:pages_contact_change" contact.id %}"><i class="fa fa-gear"></i></a>
+                {% endif %}</h2>
+                <p>We do <strong>things</strong> differently company providing key digital services. <br>
+                Focused on helping our clients to build a <strong>successful</strong> business on web and mobile.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-sm-6">
+                    <div id="map" class="height-450"></div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <p class="lead padding-bottom-10">Want to get more information? Contact us by using the form or call directly for more info.</p>
+
+                    <ul class="list-unstyled">
+                        <li class="padding-bottom-10">
+                            <i class="icon-custom icon-sm rounded-x icon-color-u fa fa-home"></i>
+                            <h6>Address</h6>
+                            <div>
+                            <p>{{contact.address}}</p>
+                            </div>
+                        </li>
+                        <li class="padding-bottom-10">
+                            <i class="icon-custom icon-sm rounded-x icon-color-u fa fa-phone"></i>
+                            <h6>Phone</h6>
+                            <p>{{contact.phone}}</p>
+                        </li>
+                        <li class="padding-bottom-10">
+                            <i class="icon-custom icon-sm rounded-x icon-color-u fa fa-envelope"></i>
+                            <h6>Email</h6>
+                            <a href="mailto:#" class="link-black">{{contact.email}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contacts END -->
+
+    <!-- Footer simple BEGIN -->
+    <section class="footer-simple">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-4 col-xs-5">
+            <p>2015 &copy; All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 col-sm-8 col-xs-7 text-right pull-right">
+            <ul class="social-icons">
+                <li><a class="social_facebook rounded-x" data-original-title="Facebook" href="#"></a></li>
+                <li><a class="social_twitter rounded-x" data-original-title="Twitter" href="#"></a></li>
+                <li><a class="social_googleplus rounded-x" data-original-title="Goole Plus" href="#"></a></li>
+                <li><a class="social_pintrest rounded-x" data-original-title="Pinterest" href="#"></a></li>
+                <li><a class="social_linkedin rounded-x" data-original-title="Linkedin" href="#"></a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url "admin:logout" %}?next=/"><i class="fa fa-times"></i></a></li>
+                {% else %}
+                <li><a href="{% url "admin:login" %}?next=/"><i class="fa fa-gear"></i></a></li>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer simple END -->
+</section>
+<!-- End Contact Section -->
+
+    <!-- JS Global Compulsory -->
+    <script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "plugins/jquery/jquery-migrate.min.js" %}"></script>
+    <script src="{% static "plugins/bootstrap/js/bootstrap.min.js" %}"></script>
+    <!-- JS Implementing Plugins -->
+    <script src="{% static "plugins/smoothScroll.js" %}"></script>
+    <script src="assets/plugins/jquery.easing.min.js"></script>
+    <script src="assets/plugins/pace/pace.min.js"></script>
+    <script src="assets/plugins/jquery.parallax.js"></script>
+    <script src="assets/plugins/counter/waypoints.min.js"></script>
+    <script src="assets/plugins/counter/jquery.counterup.min.js"></script>
+    <script src="assets/plugins/owl-carousel/owl.carousel.js"></script>
+    <script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>
+    <script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+    <script src="{% static "plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js" %}"></script>
+    <script src="assets/plugins/modernizr.js"></script>
+    <script src="assets/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
+    <script type="text/javascript">
+        $.getScript("../../static/plugins/backstretch/jquery.backstretch.min.js", function() {
+            $(".fullscreen-static-image").backstretch("{{intro.image.url}}");
+        });
+    </script>
+
+    <!-- JS Page Level-->
+    <script src="{% static "js/one.app.js" %}"></script>
+    <script src="assets/js/forms/login.js"></script>
+    <script src="assets/js/forms/contact.js"></script>
+    <script src="assets/js/plugins/pace-loader.js"></script>
+    <script src="assets/js/plugins/owl-carousel.js"></script>
+    <script src="{% static "js/plugins/cube-portfolio/cube-portfolio-lightbox.js" %}"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
+    <script type="text/javascript" src="{% static "plugins/gmap/gmap.js" %}"></script>
+    <!-- <script type="text/javascript" src="{% static "js/page_contacts.js" %}"></script> -->
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            // App.initCounter();
+            // App.initParallaxBg();
+            map = new GMaps({
+                div: '#map',
+                scrollwheel: false,             
+                lat: {{contact.gmap_lat}},
+                lng: {{contact.gmap_lng}}
+              });
+              
+              var marker = map.addMarker({
+                lat: {{contact.gmap_lat}},
+                lng: {{contact.gmap_lng}},
+                title: '{{contact.gmap_title}}'
+               });
+            // LoginForm.initLoginForm();
+            // ContactForm.initContactForm();
+            // OwlCarousel.initOwlCarousel();
+        });
+    </script>
+    <!--[if lt IE 9]>
+        <script src="{% static "plugins/respond.js" %}"></script>
+        <script src="{% static "plugins/html5shiv.js" %}"></script>
+        <script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+        <script src="assets/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 10]>
+        <script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+    <![endif]-->
+</body>
+</html>
