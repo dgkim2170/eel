@@ -20,7 +20,9 @@ from django.contrib import admin
 
 from pages.views import index
 urlpatterns = [
-	url(r'^$', index, name='homedefault'),
+	url(r'^$', index, name='landing'),
 	url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^admin/', admin.site.urls),
+
+    url(r'^redactor/', include('redactor.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

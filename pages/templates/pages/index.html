@@ -82,19 +82,23 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <div class="menu-container">
                     <ul class="nav navbar-nav">
                         <li class="page-scroll home">
-                            <a href="#body">Home</a>
-                        </li>
-                        <li class="page-scroll">
                             <a href="#research">Research</a>
                         </li>
                         <li class="page-scroll">
                             <a href="#faculty">Faculty</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="#members">Members</a>
+                            <a href="#collaborators">Collaborators</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#students">Students</a>
                         </li>
                         <li class="page-scroll">
                             <a href="#publications">Publications</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#education">Education</a>
+                            <!-- 교과목제목과 yscec링크 -->
                         </li>
                         <li class="page-scroll">
                             <a href="#calender">Calender</a>
@@ -103,7 +107,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <a href="#photos">Photos</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="#news">News Coverage</a>
+                            <a href="#news">News</a>
                         </li>
                         <li class="page-scroll">
                             <a href="#contact">Contact</a>
@@ -126,8 +130,8 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <div class="row">
                   <div class="col-sm-10 col-sm-offset-1 text-center-xs">
                     <h2>{{intro.title}}
-                    {% if user.is_staff %}
-                    <a href="{% url "admin:pages_intro_change" intro.id %}"><i class="fa fa-gear"></i></a>
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_intro_change" intro.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                     </h2>
                     <div class="promo-text">
@@ -180,7 +184,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <div class="container content-lg">
                 <div class="title-v1">
                     <h2>Research</h2>
-                    <p>Lorem Ipsum is simply <strong>dummy</strong> text of the printing and typesetting industry.<br/>Lorem Ipsum has been the industry's</p>
+                    {{researchintro.text|safe}}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_researchintro_change" researchintro.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
                 </div>
 
                 <div class="row">
@@ -191,15 +198,15 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <div class="content-boxes-in-v3">
                                 <h2 class="heading-sm">{{res.title}}</h2>
                                 <p>{{res.content}}
-                                {% if user.is_staff %}
-                                <a href="{% url "admin:pages_researchleft_change" res.id %}"><i class="fa fa-gear"></i></a>
+                                {% if user.is_superuser %}
+                                <a href="{% url "admin:pages_researchleft_change" res.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                                 {% endif %}
                                 </p>
                             </div>
                         </div>
                         {% endfor %}
-                        {% if user.is_staff %}
-                        <a href="{% url "admin:pages_researchleft_add" %}"><i class="fa fa-plus"></i></a>
+                        {% if user.is_superuser %}
+                        <a href="{% url "admin:pages_researchleft_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
                         {% endif %}
                     </div>
                     <div class="col-md-6 content-boxes-v3 padding-top-20">
@@ -209,15 +216,15 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <div class="content-boxes-in-v3">
                                 <h2 class="heading-sm">{{res.title}}</h2>
                                 <p>{{res.content}}
-                                {% if user.is_staff %}
-                                <a href="{% url "admin:pages_researchright_change" res.id %}"><i class="fa fa-gear"></i></a>
+                                {% if user.is_superuser %}
+                                <a href="{% url "admin:pages_researchright_change" res.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                                 {% endif %}
                                 </p>
                             </div>
                         </div>
                         {% endfor %}
-                        {% if user.is_staff %}
-                        <a href="{% url "admin:pages_researchright_add" %}"><i class="fa fa-plus"></i></a>
+                        {% if user.is_superuser %}
+                        <a href="{% url "admin:pages_researchright_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
                         {% endif %}
                     </div>
                 </div>
@@ -245,8 +252,8 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <div class="col-md-3 col-sm-6 md-margin-bottom-50">
                     <img alt="" src="{{prof.photo.url}}" class="img-responsive">
                     <span>{{prof.name}}
-                    {% if user.is_staff %}
-                    <a href="{% url "admin:pages_faculty_change" prof.id %}"><i class="fa fa-gear"></i></a>
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_faculty_change" prof.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                     </span>
                     <small>{{prof.position}}</small>
@@ -262,8 +269,53 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </div>
                 {% endif %}
                 {% endfor %}
-                {% if user.is_staff %}
-                <a href="{% url "admin:pages_faculty_add" %}"><i class="fa fa-plus"></i></a>
+                {% if user.is_superuser %}
+                <a href="{% url "admin:pages_faculty_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- End Team Block -->
+    </section>
+
+    <section id="collaborators">
+        <!-- Team Block -->
+        <div class="team-v1 content-lg">
+            <div class="container">
+                <div class="title-v1">
+                    <h2>Collaborators</h2>
+                    <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
+                </div>
+
+                {% for prof in collaborators %}
+                {% if forloop.counter0 == 0 %}
+                <div class="row team-v6">
+                {% elif forloop.counter0|divisibleby:"4"%}
+                </div>
+                <div class="row team-v6">
+                {% endif %}
+                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                    <img alt="" src="{{prof.photo.url}}" class="img-responsive">
+                    <span>{{prof.name}}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_collaborator_change" prof.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                    </span>
+                    <small>{{prof.position}}</small>
+                    <p>{{prof.content}}</p>
+                    <p>{{prof.email}}</p>
+                    <!-- <ul class="list-inline social-icons-v1">
+                        <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+                    </ul> -->
+                </div>
+                {% if forloop.last %}
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                {% if user.is_superuser %}
+                <a href="{% url "admin:pages_collaborator_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
                 {% endif %}
             </div>
         </div>
@@ -271,14 +323,46 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
     </section>
 
 
-    <section id="members">
+    <section id="students">
         <!-- Team Block -->
         <div class="team-v1 content-lg">
             <div class="container">
                 <div class="title-v1">
-                    <h2>Members</h2>
+                    <h2>Students</h2>
                     <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
                 </div>
+
+                {% for student in students %}
+                {% if forloop.counter0 == 0 %}
+                <div class="row team-v6">
+                {% elif forloop.counter0|divisibleby:"4"%}
+                </div>
+                <div class="row team-v6">
+                {% endif %}
+                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                    <img alt="" src="{{student.photo.url}}" class="img-responsive">
+                    <span>{{student.name}}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_student_change" student.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                    </span>
+                    <small>{{student.position}}</small>
+                    <p>{{student.content}}</p>
+                    <p>{{student.email}}</p>
+                    <!-- <ul class="list-inline social-icons-v1">
+                        <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+                    </ul> -->
+                </div>
+                {% if forloop.last %}
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                {% if user.is_superuser %}
+                <a href="{% url "admin:pages_student_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+                {% endif %}
             </div>
         </div>
         <!-- End Team Block -->
@@ -364,6 +448,19 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
         <!-- End Testimonials -->
     </section>
 
+    <section id="education">
+        <!-- Team Block -->
+        <div class="team-v1 content-lg">
+            <div class="container">
+                <div class="title-v1">
+                    <h2>Education</h2>
+                    <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
+                </div>
+            </div>
+        </div>
+        <!-- End Team Block -->
+    </section>
+
     <!-- Calender Section -->
     <section id="calender">
         <div class="container content-lg">
@@ -398,11 +495,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
     <section id="contact" class="contacts-section2 bg-color-light">
         <div class="container content">
             <div class="title-v1">
-                <h2>Contact Us{% if user.is_staff %}
-                <a href="{% url "admin:pages_contact_change" contact.id %}"><i class="fa fa-gear"></i></a>
+                <h2>Contact Us{% if user.is_superuser %}
+                <a href="{% url "admin:pages_contact_change" contact.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                 {% endif %}</h2>
-                <p>We do <strong>things</strong> differently company providing key digital services. <br>
-                Focused on helping our clients to build a <strong>successful</strong> business on web and mobile.</p>
+                {{contact.text|safe}}
             </div>
 
             <div class="row">
@@ -411,8 +507,6 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </div>
 
                 <div class="col-md-4 col-sm-6">
-                    <p class="lead padding-bottom-10">Want to get more information? Contact us by using the form or call directly for more info.</p>
-
                     <ul class="list-unstyled">
                         <li class="padding-bottom-10">
                             <i class="icon-custom icon-sm rounded-x icon-color-u fa fa-home"></i>

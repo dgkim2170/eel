@@ -13,6 +13,14 @@ class Intro(models.Model):
 	def __unicode__(self):
 		return '['+str(self.updated)+']'+ self.title
 
+class ResearchIntro(models.Model):
+	text = models.CharField(max_length=255, blank=True, null=True)
+	updated = models.DateTimeField(auto_now=True)
+	made = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+		return 'Research Intro Text'
+
 class Research(models.Model):
 	title = models.CharField(max_length=255, blank=True, null=True)
 	icon = models.CharField(max_length=50, blank=True, null=True)
@@ -39,7 +47,28 @@ class Faculty(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class Collaborator(models.Model):
+	name = models.CharField(max_length=50, null=True)
+	position = models.CharField(max_length=50, null=True)
+	content = models.CharField(max_length=255, null=True)
+	photo = models.ImageField(upload_to='collaborators/', null=True)
+	email = models.EmailField(null=True)
+
+	def __unicode__(self):
+		return self.name
+
+class Student(models.Model):
+	name = models.CharField(max_length=50, null=True)
+	position = models.CharField(max_length=50, null=True)
+	content = models.CharField(max_length=255, null=True)
+	photo = models.ImageField(upload_to='students/', null=True)
+	email = models.EmailField(null=True)
+
+	def __unicode__(self):
+		return self.name
+
 class Contact(models.Model):
+	text = models.CharField(max_length=1000, blank=True, null=True)
 	address = models.CharField(max_length=255, blank=True, null=True)
 	phone = models.CharField(max_length=50, blank=True, null=True)
 	email = models.EmailField(blank=True, null=True)

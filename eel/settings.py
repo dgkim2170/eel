@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'redactor',
+
     'pages',
 ]
 
@@ -130,3 +132,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# redactor editor
+REDACTOR_OPTIONS = {'lang': 'en', 'plugins': ['scriptbuttons']}
+REDACTOR_UPLOAD = 'uploads/'
