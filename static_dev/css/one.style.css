@@ -625,8 +625,8 @@ a:hover {
 }
 
 .cube-portfolio #filters-container .cbp-filter-item-active {
-  background: #72c02c;
-  border-color: #72c02c;
+  /*background: #72c02c;*/
+  /*border-color: #72c02c;*/
 }
 
 .cube-portfolio .cbp-l-filters-button .cbp-filter-counter {
