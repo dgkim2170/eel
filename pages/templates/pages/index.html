@@ -554,6 +554,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </h5>  
                 </div>
                 {% endfor %}
+                {% else %}
+                <div class="row">
+                    <p>No books</p>
+                </div>
                 {% endif %}
             </div>
 
@@ -595,10 +599,9 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                                 <tr>
                                     <td class="td-width">
                                         <h3>
-                                            {% if lecture.link == '' %}
                                             {{lecture.title}}
-                                            {% else %}
-                                            <a href="{{lecture.link}}" target="_blank">{{lecture.title}}</a>
+                                            {% if lecture.link != "" %}
+                                            <a href="{{lecture.link}}" target="_blank"><i class="fa fa-home"></i></a>
                                             {% endif %}
                                             {% if user.is_superuser %}
                                             <a href="{% url "admin:pages_lecture_change" lecture.id %}" target="_blank"><i class="fa fa-gear"></i></a>
