@@ -5,26 +5,27 @@ from django.http import HttpResponseRedirect
 
 from redactor.widgets import RedactorEditor
 
-from pages.models import Intro, ResearchIntro, Research, \
-						Faculty, Collaborator, Student, Publication, \
+from pages.models import Intro, ResearchIntro, Research, Project, \
+						Faculty, Collaborator, Student, Alumnus, Publication, \
 						Lecture, UsefulLink, Calender, \
 						PhotographCategory, Photograph, News, Contact
 
 # Register your models here.
 class DefaultAdmin(admin.ModelAdmin):
-	urladd = ''
-	def response_change(self, request, obj, post_url_continue=None):
-		return HttpResponseRedirect(reverse('landing')+ self.urladd)
-	def response_add(self, request, obj, post_url_continue=None):
-		return HttpResponseRedirect(reverse('landing')+ self.urladd)
-	def response_delete(self, request, obj, post_url_continue=None):
-		return HttpResponseRedirect(reverse('landing')+ self.urladd)
+	# urladd = ''
+	# def response_change(self, request, obj, post_url_continue=None):
+	# 	return HttpResponseRedirect(reverse('landing')+ self.urladd)
+	# def response_add(self, request, obj, post_url_continue=None):
+	# 	return HttpResponseRedirect(reverse('landing')+ self.urladd)
+	# def response_delete(self, request, obj, post_url_continue=None):
+	# 	return HttpResponseRedirect(reverse('landing')+ self.urladd)
+	pass
 
 class IntroAdminForm(forms.ModelForm):
 	content = forms.CharField(widget = RedactorEditor())
 	class Meta:
 		model = Intro
-		fields = ('title', 'content', 'image')
+		exclude = ()
 class IntroAdmin(DefaultAdmin):
 	form = IntroAdminForm
 admin.site.register(Intro, IntroAdmin)
@@ -33,12 +34,22 @@ class ResearchAdminForm(forms.ModelForm):
 	content = forms.CharField(widget = RedactorEditor())
 	class Meta:
 		model = Research
-		fields = ('title', 'icon', 'content')
+		exclude = ()
 class ResearchAdmin(DefaultAdmin):
 	urladd = '#research'
 	form = ResearchAdminForm
 admin.site.register(Research, ResearchAdmin)
 # admin.site.register(ResearchRight, ResearchAdmin)
+
+class ProjectAdminForm(forms.ModelForm):
+	content = forms.CharField(widget = RedactorEditor())
+	class Meta:
+		model = Project
+		exclude = ()
+class ProjectAdmin(DefaultAdmin):
+	urladd = '#research'
+	form = ProjectAdminForm
+admin.site.register(Project, ProjectAdmin)
 
 class ResearchIntroAdminForm(forms.ModelForm):
 	text = forms.CharField(widget = RedactorEditor())
@@ -49,20 +60,39 @@ class ResearchIntroAdmin(ResearchAdmin):
 	form = ResearchIntroAdminForm
 admin.site.register(ResearchIntro, ResearchIntroAdmin)		
 
+class FacultyAdminForm(forms.ModelForm):
+	content = forms.CharField(widget = RedactorEditor())
+	class Meta:
+		model = Faculty
+		exclude = ()
 class FacultyAdmin(DefaultAdmin):
 	urladd = '#faculty'
+	form = FacultyAdminForm
 admin.site.register(Faculty, FacultyAdmin)
-admin.site.register(Collaborator, FacultyAdmin)
-admin.site.register(Student, FacultyAdmin)
 
-class PublicationAdminForm(forms.ModelForm):
-	description = forms.CharField(widget=RedactorEditor())
+class CollaboratorAdminForm(forms.ModelForm):
+	content = forms.CharField(widget = RedactorEditor())
 	class Meta:
-		model = Publication
+		model = Collaborator
 		exclude = ()
+class CollaboratorAdmin(DefaultAdmin):
+	urladd = '#collaborators'
+	form = CollaboratorAdminForm
+admin.site.register(Collaborator, CollaboratorAdmin)
+class StudentAdmin(DefaultAdmin):
+	urladd = '#students'
+admin.site.register(Student, StudentAdmin)
+
+admin.site.register(Alumnus)
+
+# class PublicationAdminForm(forms.ModelForm):
+# 	description = forms.CharField(widget=RedactorEditor())
+# 	class Meta:
+# 		model = Publication
+# 		exclude = ()
 class PublicationAdmin(DefaultAdmin):
 	urladd = '#publications'
-	form = PublicationAdminForm
+	# form = PublicationAdminForm
 admin.site.register(Publication, PublicationAdmin)
 
 class LectureAdminForm(forms.ModelForm):
@@ -120,7 +150,7 @@ class ContactAdminForm(forms.ModelForm):
 	text = forms.CharField(widget = RedactorEditor())
 	class Meta:
 		model = Contact
-		fields = ('text', 'address', 'phone', 'email', 'gmap_lat', 'gmap_lng', 'gmap_title')
+		exclude = ()
 class ContactAdmin(DefaultAdmin):
 	urladd = '#contact'
 	form = ContactAdminForm

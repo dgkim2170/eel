@@ -689,6 +689,14 @@ a:hover {
   text-align: center;
   margin-bottom: 60px;
 }
+.promo-text p, .promo-text li {
+  color: #fff;
+  position: relative;
+  font-size: 26px;
+  font-weight: 200;
+  line-height: 40px;
+  text-align: center;
+}
 .promo-text:after {
   left: 50%;
   content: "";

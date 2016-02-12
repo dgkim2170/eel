@@ -14,7 +14,7 @@
     <meta name="author" content="">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <!-- <link rel="shortcut icon" href="favicon.ico"> -->
 
     <!-- Web Fonts -->
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
@@ -30,11 +30,11 @@
     <link rel="stylesheet" href="{% static "plugins/animate.css" %}">
     <link rel="stylesheet" href="{% static "plugins/line-icons/line-icons.css" %}">
     <link rel="stylesheet" href="{% static "plugins/font-awesome/css/font-awesome.min.css" %}">
-    <link rel="stylesheet" href="assets/plugins/pace/pace-flash.css">
-    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.css">
+    <!-- <link rel="stylesheet" href="assets/plugins/pace/pace-flash.css"> -->
+    <!-- <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.css"> -->
     <link rel="stylesheet" href="{% static "plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css" %}">
     <link rel="stylesheet" href="{% static "plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css" %}">
-    <link rel="stylesheet" href="assets/plugins/login-signup-modal-window/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/plugins/login-signup-modal-window/css/style.css"> -->
 
     <link rel="stylesheet" type="text/css" href="{% static "plugins/fullcalendar-2.6.0/fullcalendar.css" %}">
 
@@ -90,13 +90,13 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <a href="#research">Research</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="#faculty">Faculty</a>
+                            <a href="#professors">Professors</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#members">Members</a>
                         </li>
                         <li class="page-scroll">
                             <a href="#collaborators">Collaborators</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#students">Students</a>
                         </li>
                         <li class="page-scroll">
                             <a href="#publications">Publications</a>
@@ -140,7 +140,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     {% endif %}
                     </h2>
                     <div class="promo-text">
-                        {{intro.content}}
+                        {{intro.content|safe}}
                     </div>
                     <!-- <div class="promo-next">
                         <span class="page-scroll"><a class="btn-u btn-brd btn-brd-hover btn-u-light" href="#about">Learn More</a></span>
@@ -190,18 +190,19 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <div class="container content-lg">
                 <div class="title-v1">
                     <h2>Research</h2>
-                    {{researchintro.text|safe}}
+                </div>
+                <div class="col-md-6">
+                    <h1 class="margin-bottom-20">Research Interests</h1>
+                    <!-- {{researchintro.text|safe}}
                     {% if user.is_superuser %}
                     <a href="{% url "admin:pages_researchintro_change" researchintro.id %}" target="_blank"><i class="fa fa-gear"></i></a>
-                    {% endif %}
-                </div>
+                    {% endif %} -->
 
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2 content-boxes-v3 padding-top-20">
                         {% if research %}
                         {% for res in research %}
                         <div class="clearfix margin-bottom-30">
-                            <i class="icon-custom icon-md rounded-x icon-bg-u fa fa-{{res.icon}}"></i>
+                            <!-- <i class="icon-custom icon-md rounded-x icon-bg-u fa fa-{{res.icon}}"></i> -->
                             <div class="content-boxes-in-v3">
                                 <h2 class="heading-sm">{{res.title|safe}}</h2>
                                 <p>{{res.content|safe}}
@@ -216,19 +217,63 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                         {% if user.is_superuser %}
                         <a href="{% url "admin:pages_research_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
                         {% endif %}
-                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h1 class="margin-bottom-20">Current Projects</h1>
+
+                <div class="row">
+                        {% if currentprojects %}
+                        {% for proj in currentprojects %}
+                        <div class="clearfix margin-bottom-30">
+                            <!-- <i class="icon-custom icon-md rounded-x icon-bg-u fa fa-{{res.icon}}"></i> -->
+                            <div class="content-boxes-in-v3">
+                                <h2 class="heading-sm">{{proj.title|safe}}</h2>
+
+                                {% if proj.gmap_lat == '' %}
+                                
+                                <div class="col-sm-12">
+                                {{proj.content|safe}}
+                                {% if user.is_superuser %}
+                                <a href="{% url "admin:pages_project_change" proj.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                                {% endif %}
+                                </div>
+
+                                {% else %}
+                                
+                                <div class="col-sm-9">
+                                {{proj.content|safe}}
+                                {% if user.is_superuser %}
+                                <a href="{% url "admin:pages_project_change" proj.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                                {% endif %}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div id="proj-map-{{proj.id}}" class="height-100"></div>
+                                </div>
+                                
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% if user.is_superuser %}
+                        <a href="{% url "admin:pages_project_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+                        {% endif %}
+                </div>
+                    
                 </div>
             </div>
         </div>
         <!-- End Our Vision And Mission -->
     </section>
 
-    <section id="faculty">
+    <section id="professors">
         <!-- Team Block -->
         <div class="team-v1 content-lg bg-color-light">
             <div class="container">
                 <div class="title-v1">
-                    <h2>Faculty</h2>
+                    <h2>Professors</h2>
                     <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
                 </div>
 
@@ -246,9 +291,9 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     <a href="{% url "admin:pages_faculty_change" prof.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                     </span>
+                    <p style="margin-bottom:0">{{prof.email}}</p>
                     <small>{{prof.position}}</small>
-                    <p>{{prof.content}}</p>
-                    <p>{{prof.email}}</p>
+                    {{prof.content|safe}}
                     <!-- <ul class="list-inline social-icons-v1">
                         <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
                         <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
@@ -267,58 +312,13 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
         <!-- End Team Block -->
     </section>
 
-    <section id="collaborators">
+
+    <section id="members">
         <!-- Team Block -->
         <div class="team-v1 content-lg">
             <div class="container">
                 <div class="title-v1">
-                    <h2>Collaborators</h2>
-                    <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
-                </div>
-
-                {% for prof in collaborators %}
-                {% if forloop.counter0 == 0 %}
-                <div class="row team-v6">
-                {% elif forloop.counter0|divisibleby:"4"%}
-                </div>
-                <div class="row team-v6">
-                {% endif %}
-                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
-                    <img alt="" src="{{prof.photo.url}}" class="img-responsive">
-                    <span>{{prof.name}}
-                    {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_collaborator_change" prof.id %}" target="_blank"><i class="fa fa-gear"></i></a>
-                    {% endif %}
-                    </span>
-                    <small>{{prof.position}}</small>
-                    <p>{{prof.content}}</p>
-                    <p>{{prof.email}}</p>
-                    <!-- <ul class="list-inline social-icons-v1">
-                        <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
-                    </ul> -->
-                </div>
-                {% if forloop.last %}
-                </div>
-                {% endif %}
-                {% endfor %}
-
-                {% if user.is_superuser %}
-                <a href="{% url "admin:pages_collaborator_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
-                {% endif %}
-            </div>
-        </div>
-        <!-- End Team Block -->
-    </section>
-
-
-    <section id="students" class="bg-color-light">
-        <!-- Team Block -->
-        <div class="team-v1 content-lg">
-            <div class="container">
-                <div class="title-v1">
-                    <h2>Students</h2>
+                    <h2>Members</h2>
                     <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
                 </div>
 
@@ -353,50 +353,216 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 {% if user.is_superuser %}
                 <a href="{% url "admin:pages_student_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
                 {% endif %}
+
+                <h1>Alumni</h1>
+                {% if alumni %}
+                <ul>
+                    {% for alumnus in alumni %}
+                    <li>{{alumnus.name}}: {{alumnus.content}} {% if user.is_superuser %}<a href="{% url "admin:pages_alumnus_change" alumnus.id %}" target="_blank"><i class="fa fa-gear"></i></a>{% endif %}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                {% if user.is_superuser %}
+                <a href="{% url "admin:pages_alumnus_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+                {% endif %}
             </div>
         </div>
         <!-- End Team Block -->
     </section>
 
-<!-- http://htmlstream.com/preview/unify-v1.9/page_home14.html -->
-    <section id="publications">
-        <!-- Testimonials -->
-        <div class="what-people-say">
-            <div class="container content-lg">
+    <section id="collaborators" class="bg-color-light">
+        <!-- Team Block -->
+        <div class="team-v1 content-lg">
+            <div class="container">
                 <div class="title-v1">
-                    <h2>Publications</h2>
-                    <!-- <p>We do <strong>things</strong> differently company providing key digital services. <br> -->
-                    <!-- Focused on helping our clients to build a <strong>successful</strong> business on web and mobile.</p> -->
+                    <h2>Collaborators</h2>
+                    <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
                 </div>
 
-                {% if publications %}
-                {% for publication in publications %}
+                {% for prof in collaborators %}
+                {% if forloop.counter0 == 0 %}
+                <div class="row team-v6">
+                {% elif forloop.counter0|divisibleby:"4"%}
+                </div>
+                <div class="row team-v6">
+                {% endif %}
+                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                    <img alt="" src="{{prof.photo.url}}" class="img-responsive">
+                    <span>{{prof.name}}
+                    {% if prof.link %}
+                    <a href="{{prof.link}}" target="_blank"><i class="fa fa-home"></i></a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_collaborator_change" prof.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                    </span>
+                    <small>{{prof.position}}</small>
+                    {{prof.content|safe}}
+                    <p>{{prof.email}}</p>
+                    <!-- <ul class="list-inline social-icons-v1">
+                        <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+                    </ul> -->
+                </div>
+                {% if forloop.last %}
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                {% if user.is_superuser %}
+                <a href="{% url "admin:pages_collaborator_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- End Team Block -->
+    </section>
+
+
+<!-- http://htmlstream.com/preview/unify-v1.9/page_home14.html -->
+    <section id="publications">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Publications</h2>
+                <!-- <p>We do <strong>things</strong> differently company providing key digital services. <br> -->
+                <!-- Focused on helping our clients to build a <strong>successful</strong> business on web and mobile.</p> -->
+            </div>
+
+            <h3>International Journals</h3>
+            {% if international_featured %}
+            {% for publication in international_featured %}
+            <div class="row">
+                <h5>
+                    {{publication.content}}
+                    {% if publication.link %}
+                    <a href="{{publication.link}}" target="_blank">
+                        <i class="fa fa-file-text"></i>
+                    </a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                </h5>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <a data-toggle="collapse" href="#collapse-international" aria-expanded="false" aria-controls="collapse-international">See all international journals <i class="fa fa-arrow-down"></i></a>
+            <div class="collapse" id="collapse-international">
+                {% if international %}
+                {% for publication in international %}
                 <div class="row">
-                    <div class="col-xs-9">
-                        <h5>
-                            <a href="{{publication.link}}" target="_blank">
-                                {{publication.title}}
-                            </a>
-                            {% if user.is_superuser %}
-                            <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
-                            {% endif %}
-                        </h5>
-                        <h6>by {{publication.authors}}</h6>
-                        {{publication.description|safe}}
-                    </div>
-                    <div class="col-xs-3">
-                        <div id="pub-map-{{publication.id}}" class="height-100"></div>
-                    </div>
+                    <h5>
+                    {{publication.content}}
+                    {% if publication.link %}
+                    <a href="{{publication.link}}" target="_blank">
+                        <i class="fa fa-file-text"></i>
+                    </a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                </h5>  
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="row">
+                    <p>No journals</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <h3 class="margin-top-20">Domestic Journals</h3>
+            {% if domestic_featured %}
+            {% for publication in domestic_featured %}
+            <div class="row">
+                <h5>
+                    {{publication.content}}
+                    {% if publication.link %}
+                    <a href="{{publication.link}}" target="_blank">
+                        <i class="fa fa-file-text"></i>
+                    </a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                </h5>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <a data-toggle="collapse" href="#collapse-domestic" aria-expanded="false" aria-controls="collapse-domestic">See all domestic journals <i class="fa fa-arrow-down"></i></a>
+            <div class="collapse" id="collapse-domestic">
+                {% if domestic %}
+                {% for publication in domestic %}
+                <div class="row">
+                    <h5>
+                    {{publication.content}}
+                    {% if publication.link %}
+                    <a href="{{publication.link}}" target="_blank">
+                        <i class="fa fa-file-text"></i>
+                    </a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                </h5>  
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="row">
+                    <p>No journals</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <h3 class="margin-top-20">Books</h3>
+            {% if book_featured %}
+            {% for publication in book_featured %}
+            <div class="row">
+                <h5>
+                    {{publication.content}}
+                    {% if publication.link %}
+                    <a href="{{publication.link}}" target="_blank">
+                        <i class="fa fa-file-text"></i>
+                    </a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                </h5>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <a data-toggle="collapse" href="#collapse-book" aria-expanded="false" aria-controls="collapse-book">See all books <i class="fa fa-arrow-down"></i></a>
+            <div class="collapse" id="collapse-book">
+                {% if book %}
+                {% for publication in book %}
+                <div class="row">
+                    <h5>
+                    {{publication.content}}
+                    {% if publication.link %}
+                    <a href="{{publication.link}}" target="_blank">
+                        <i class="fa fa-file-text"></i>
+                    </a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    {% endif %}
+                </h5>  
                 </div>
                 {% endfor %}
                 {% endif %}
+            </div>
 
-                {% if user.is_superuser %}
-                <a href="{% url "admin:pages_publication_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
-                {% endif %}
-            </div><!--/end container-->
-        </div>
-        <!-- End Testimonials -->
+            {% if user.is_superuser %}
+            <div>
+            <a href="{% url "admin:pages_publication_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+            </div>
+            {% endif %}
+        </div><!--/end container-->
     </section>
 
     <section id="education" class="bg-color-light">
@@ -408,6 +574,11 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     <!-- <p>We <strong>meet</strong> and get to know you. You tell us and we listen. <br>We build your website to realise your vision and we <strong>deliver</strong> the ready product.</p> -->
                 </div>
                 <div class="table-search-v2">
+                    <h3>Teaching Philosophy</h3>
+                    <ul class="margin-bottom-30">
+                        <li>To maximize implementation of the potentials of students</li>
+                        <li>To facilitate interdisciplinary researches and self-motivated education</li>
+                    </ul>
                     <h3>Lectures</h3>
                     <div class="table-responsive">
                         <table class="table" style="color:#555">
@@ -424,7 +595,11 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                                 <tr>
                                     <td class="td-width">
                                         <h3>
+                                            {% if lecture.link == '' %}
                                             {{lecture.title}}
+                                            {% else %}
+                                            <a href="{{lecture.link}}" target="_blank">{{lecture.title}}</a>
+                                            {% endif %}
                                             {% if user.is_superuser %}
                                             <a href="{% url "admin:pages_lecture_change" lecture.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                                             {% endif %}
@@ -593,7 +768,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     {% endif %}
                     Contact Us
                 </h2>
-                {{contact.text|safe}}
+                <!-- {{contact.text|safe}} -->
             </div>
 
             <div class="row">
@@ -615,10 +790,15 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <h6>Phone</h6>
                             <p>{{contact.phone}}</p>
                         </li>
+                        <li class="padding-bottom-10 margin-bottom-10">
+                            <i class="icon-custom icon-sm rounded-x icon-color-u fa fa-envelope"></i>
+                            <h6>Email (Webmaster)</h6>
+                            <a href="mailto:{{contact.email_webmaster}}" class="link-black">{{contact.email_webmaster}}</a>
+                        </li>
                         <li class="padding-bottom-10">
                             <i class="icon-custom icon-sm rounded-x icon-color-u fa fa-envelope"></i>
-                            <h6>Email</h6>
-                            <a href="mailto:#" class="link-black">{{contact.email}}</a>
+                            <h6>Email (Professor)</h6>
+                            <a href="mailto:{{contact.email_professor}}" class="link-black">{{contact.email_professor}}</a>
                         </li>
                     </ul>
                 </div>
@@ -661,17 +841,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
     <script src="{% static "plugins/bootstrap/js/bootstrap.min.js" %}"></script>
     <!-- JS Implementing Plugins -->
     <script src="{% static "plugins/smoothScroll.js" %}"></script>
-    <script src="assets/plugins/jquery.easing.min.js"></script>
-    <script src="assets/plugins/pace/pace.min.js"></script>
-    <script src="assets/plugins/jquery.parallax.js"></script>
-    <script src="assets/plugins/counter/waypoints.min.js"></script>
-    <script src="assets/plugins/counter/jquery.counterup.min.js"></script>
-    <script src="assets/plugins/owl-carousel/owl.carousel.js"></script>
-    <script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>
-    <script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
     <script src="{% static "plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js" %}"></script>
-    <script src="assets/plugins/modernizr.js"></script>
-    <script src="assets/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
     <script type="text/javascript">
         $.getScript("../../static/plugins/backstretch/jquery.backstretch.min.js", function() {
             $(".fullscreen-static-image").backstretch("{{intro.image.url}}");
@@ -682,10 +852,6 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 
     <!-- JS Page Level-->
     <script src="{% static "js/one.app.js" %}"></script>
-    <script src="assets/js/forms/login.js"></script>
-    <script src="assets/js/forms/contact.js"></script>
-    <script src="assets/js/plugins/pace-loader.js"></script>
-    <script src="assets/js/plugins/owl-carousel.js"></script>
     <script src="{% static "js/plugins/cube-portfolio/cube-portfolio-4.js" %}"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
     <script type="text/javascript" src="{% static "plugins/gmap/gmap.js" %}"></script>
@@ -695,9 +861,11 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             App.init();
             // App.initCounter();
             // App.initParallaxBg();
-            {% if publications %}
-            {% for publication in publications %}
-            GMAP('#pub-map-{{publication.id}}',{{publication.gmap_lat}},{{publication.gmap_lng}},'{{publication.gmap_title}}', false);
+            {% if currentprojects %}
+            {% for proj in currentprojects %}
+            {% if proj.gmap_lat %}
+            GMAP('#proj-map-{{proj.id}}',{{proj.gmap_lat}},{{proj.gmap_lng}},'{{proj.gmap_title}}', false);
+            {% endif %}
             {% endfor %}
             {% endif %}
             // LoginForm.initLoginForm();
