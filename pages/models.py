@@ -23,6 +23,7 @@ class Research(models.Model):
 	title = models.CharField(max_length=255, blank=True, null=True)
 	icon = models.CharField(max_length=50, blank=True, null=True)
 	content = models.TextField(blank=True, null=True)
+	rank = models.IntegerField()
 	def __unicode__(self):
 		return self.title
 
@@ -35,6 +36,7 @@ class Project(models.Model):
 	visible = models.BooleanField(default=True)
 	updated = models.DateTimeField(auto_now=True)
 	made = models.DateTimeField(auto_now_add=True)
+	rank = models.IntegerField()
 	def __unicode__(self):
 		return self.title
 
@@ -50,9 +52,12 @@ class Project(models.Model):
 class Faculty(models.Model):
 	name = models.CharField(max_length=50, null=True)
 	position = models.CharField(max_length=50, null=True)
+	address = models.CharField(max_length=255, null=True)
+	phone = models.CharField(max_length=20, null=True)
 	content = models.TextField(blank=True, null=True)
 	photo = models.ImageField(upload_to='faculty/', null=True)
 	email = models.EmailField(null=True)
+	updated = models.DateTimeField(auto_now=True)
 	def __unicode__(self):
 		return self.name
 
@@ -60,9 +65,10 @@ class Collaborator(models.Model):
 	name = models.CharField(max_length=50, null=True)
 	position = models.CharField(max_length=50, null=True)
 	content = models.TextField(blank=True, null=True)
-	photo = models.ImageField(upload_to='collaborators/', null=True)
+	photo = models.ImageField(upload_to='collaborators/', blank=True, null=True)
 	email = models.EmailField(null=True)
 	link = models.CharField(max_length=255, blank=True, null=True)
+	rank = models.IntegerField()
 	def __unicode__(self):
 		return self.name
 
@@ -70,8 +76,9 @@ class Student(models.Model):
 	name = models.CharField(max_length=50, null=True)
 	position = models.CharField(max_length=50, null=True)
 	content = models.CharField(max_length=255, null=True)
-	photo = models.ImageField(upload_to='students/', null=True)
+	photo = models.ImageField(upload_to='students/', blank=True, null=True)
 	email = models.EmailField(null=True)
+	rank = models.IntegerField()
 	def __unicode__(self):
 		return self.name
 
@@ -91,6 +98,7 @@ class Publication(models.Model):
 	category = models.CharField(max_length=255, choices=CATEGORY)
 	link = models.CharField(max_length=255, blank=True, null=True)
 	featured = models.BooleanField(default=False)
+	rank = models.IntegerField()
 	updated = models.DateTimeField(auto_now=True)
 	made = models.DateTimeField(auto_now_add=True)
 	def __unicode__(self):
@@ -103,6 +111,7 @@ class Lecture(models.Model):
 	code = models.CharField(max_length=255, null=True)
 	credit = models.CharField(max_length=10, null=True)
 	link = models.CharField(max_length=255, blank=True, null=True)
+	rank = models.IntegerField()
 	def __unicode__(self):
 		return "[%s]%s" %(self.code, self.title)
 
@@ -110,6 +119,7 @@ class UsefulLink(models.Model):
 	title = models.CharField(max_length=255, null=True)
 	description = models.CharField(max_length=1000, blank=True, null=True)
 	link = models.CharField(max_length=255, null=True)
+	rank = models.IntegerField()
 	def __unicode__(self):
 		return self.title
 

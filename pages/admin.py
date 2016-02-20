@@ -38,6 +38,8 @@ class ResearchAdminForm(forms.ModelForm):
 class ResearchAdmin(DefaultAdmin):
 	urladd = '#research'
 	form = ResearchAdminForm
+	list_display = ('__unicode__', 'rank',)
+	list_editable = ('rank',)
 admin.site.register(Research, ResearchAdmin)
 # admin.site.register(ResearchRight, ResearchAdmin)
 
@@ -49,6 +51,8 @@ class ProjectAdminForm(forms.ModelForm):
 class ProjectAdmin(DefaultAdmin):
 	urladd = '#research'
 	form = ProjectAdminForm
+	list_display = ('__unicode__', 'rank',)
+	list_editable = ('rank',)
 admin.site.register(Project, ProjectAdmin)
 
 class ResearchIntroAdminForm(forms.ModelForm):
@@ -56,7 +60,7 @@ class ResearchIntroAdminForm(forms.ModelForm):
 	class Meta:
 		model = ResearchIntro
 		fields = ('text',)
-class ResearchIntroAdmin(ResearchAdmin):
+class ResearchIntroAdmin(DefaultAdmin):
 	form = ResearchIntroAdminForm
 admin.site.register(ResearchIntro, ResearchIntroAdmin)		
 
@@ -78,9 +82,13 @@ class CollaboratorAdminForm(forms.ModelForm):
 class CollaboratorAdmin(DefaultAdmin):
 	urladd = '#collaborators'
 	form = CollaboratorAdminForm
+	list_display = ('__unicode__', 'rank',)
+	list_editable = ('rank',)
 admin.site.register(Collaborator, CollaboratorAdmin)
 class StudentAdmin(DefaultAdmin):
 	urladd = '#students'
+	list_display = ('__unicode__', 'rank',)
+	list_editable = ('rank',)
 admin.site.register(Student, StudentAdmin)
 
 admin.site.register(Alumnus)
@@ -93,6 +101,8 @@ admin.site.register(Alumnus)
 class PublicationAdmin(DefaultAdmin):
 	urladd = '#publications'
 	# form = PublicationAdminForm
+	list_display = ('__unicode__', 'category', 'rank', 'featured',)
+	list_editable = ('rank', 'featured')
 admin.site.register(Publication, PublicationAdmin)
 
 class LectureAdminForm(forms.ModelForm):
@@ -103,6 +113,8 @@ class LectureAdminForm(forms.ModelForm):
 class LectureAdmin(DefaultAdmin):
 	urladd = '#education'
 	form = LectureAdminForm
+	list_display = ('__unicode__', 'rank',)
+	list_editable = ('rank',)
 admin.site.register(Lecture, LectureAdmin)
 
 class UsefullinkAdminForm(forms.ModelForm):
@@ -113,6 +125,8 @@ class UsefullinkAdminForm(forms.ModelForm):
 class UsefullinkAdmin(DefaultAdmin):
 	urladd = '#education'
 	form = UsefullinkAdminForm
+	list_display = ('__unicode__', 'rank',)
+	list_editable = ('rank',)
 admin.site.register(UsefulLink, UsefullinkAdmin)
 
 admin.site.register(Calender)
