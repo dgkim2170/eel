@@ -324,7 +324,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </div>
                 <div class="row team-v6">
                 {% endif %}
-                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                <div class="col-sm-3 col-xs-6 md-margin-bottom-50">
                     <img alt="" src="{{student.photo.url}}" class="img-responsive">
                     <span>{{student.name}}
                     {% if user.is_superuser %}
@@ -742,9 +742,11 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                         <h6>{{new.author}}</h6>
                         {{new.description|safe}}
                     </div>
+                    {% if new.thumbnail %}
                     <div class="col-xs-4">
                         <img src="{{new.thumbnail.url}}" class="img-responsive" />
                     </div>
+                    {% endif %}
                 </div>
                 {% endfor %}
                 {% endif %}

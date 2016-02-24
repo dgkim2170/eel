@@ -7,6 +7,7 @@ from redactor.widgets import RedactorEditor
 
 from pages.models import Intro, ResearchIntro, Research, Project, \
 						Faculty, Collaborator, Student, Alumnus, Publication, \
+						InternationalJournal, DomesticJournal, Book, \
 						Lecture, UsefulLink, Calender, \
 						PhotographCategory, Photograph, News, Contact
 
@@ -101,9 +102,12 @@ admin.site.register(Alumnus)
 class PublicationAdmin(DefaultAdmin):
 	urladd = '#publications'
 	# form = PublicationAdminForm
-	list_display = ('__unicode__', 'category', 'rank', 'featured',)
+	list_display = ('__unicode__', 'rank', 'featured',)
 	list_editable = ('rank', 'featured')
 admin.site.register(Publication, PublicationAdmin)
+admin.site.register(InternationalJournal, PublicationAdmin)
+admin.site.register(DomesticJournal, PublicationAdmin)
+admin.site.register(Book, PublicationAdmin)
 
 class LectureAdminForm(forms.ModelForm):
 	description = forms.CharField(widget=RedactorEditor())

@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from pages.models import Intro, ResearchIntro, Research, Project, \
 						Faculty, Collaborator, Student, Alumnus, Publication, \
+						InternationalJournal, DomesticJournal, Book, \
 						Lecture, UsefulLink, Calender, \
 						PhotographCategory, Photograph, News, Contact
 
@@ -17,12 +18,12 @@ def index(request):
 	context['collaborators'] = Collaborator.objects.all().order_by('rank')
 	context['students'] = Student.objects.all().order_by('rank')
 	context['alumni'] = Alumnus.objects.all()
-	context['international_featured'] = Publication.objects.filter(featured=True).filter(category='international').order_by('rank')
-	context['domestic_featured'] = Publication.objects.filter(featured=True).filter(category='domestic').order_by('rank')
-	context['book_featured'] = Publication.objects.filter(featured=True).filter(category='book').order_by('rank')
-	context['international'] = Publication.objects.filter(featured=False).filter(category='international').order_by('rank')
-	context['domestic'] = Publication.objects.filter(featured=False).filter(category='domestic').order_by('rank')
-	context['book'] = Publication.objects.filter(featured=False).filter(category='book').order_by('rank')
+	context['international_featured'] = InternationalJournal.objects.filter(featured=True).order_by('rank')
+	context['domestic_featured'] = DomesticJournal.objects.filter(featured=True).order_by('rank')
+	context['book_featured'] = Book.objects.filter(featured=True).order_by('rank')
+	context['international'] = InternationalJournal.objects.filter(featured=False).order_by('rank')
+	context['domestic'] = DomesticJournal.objects.filter(featured=False).order_by('rank')
+	context['book'] = Book.objects.filter(featured=False).order_by('rank')
 	context['lectures'] = Lecture.objects.all().order_by('rank')
 	context['usefullinks'] = UsefulLink.objects.all().order_by('rank')
 	calender = Calender.objects.all()
