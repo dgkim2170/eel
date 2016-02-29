@@ -325,7 +325,11 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <div class="row team-v6">
                 {% endif %}
                 <div class="col-sm-3 col-xs-6 md-margin-bottom-50">
+                    {% if student.photo %}
                     <img alt="" src="{{student.photo.url}}" class="img-responsive">
+                    {% else %}
+                    <img alt="" src="{% static "img/eel.jpg" %}" class="img-responsive">
+                    {% endif %}
                     <span>{{student.name}}
                     {% if user.is_superuser %}
                     <a href="{% url "admin:pages_student_change" student.id %}" target="_blank"><i class="fa fa-gear"></i></a>
@@ -436,7 +440,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     </a>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    <a href="{% url "admin:pages_internationaljournal_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                 </h5>
             </div>
@@ -456,7 +460,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     </a>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    <a href="{% url "admin:pages_internationaljounal_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                 </h5>  
                 </div>
@@ -480,7 +484,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     </a>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    <a href="{% url "admin:pages_domesticjournal_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                 </h5>
             </div>
@@ -500,7 +504,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     </a>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    <a href="{% url "admin:pages_domesticjournal_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                 </h5>  
                 </div>
@@ -524,7 +528,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     </a>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    <a href="{% url "admin:pages_book_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                 </h5>
             </div>
@@ -544,7 +548,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     </a>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_publication_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    <a href="{% url "admin:pages_book_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
                 </h5>  
                 </div>

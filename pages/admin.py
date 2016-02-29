@@ -162,6 +162,8 @@ class NewsAdminForm(forms.ModelForm):
 class NewsAdmin(DefaultAdmin):
 	urladd = '#news'
 	form = NewsAdminForm
+	list_display = ('__unicode__', 'rank', 'featured',)
+	list_editable = ('rank', 'featured')
 admin.site.register(News, NewsAdmin)
 
 class ContactAdminForm(forms.ModelForm):

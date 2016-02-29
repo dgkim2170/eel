@@ -204,6 +204,8 @@ class News(models.Model):
 	published = models.DateField(blank=True, null=True)
 	updated = models.DateTimeField(auto_now=True)
 	made = models.DateTimeField(auto_now_add=True)
+	rank = models.IntegerField()
+	featured = models.BooleanField(default=False)
 	def __unicode__(self):
 		return "%s by %s" %(self.title, self.author)
 
