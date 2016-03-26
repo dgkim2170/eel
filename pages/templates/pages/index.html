@@ -431,7 +431,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <h3>International Journals</h3>
             {% if international_featured %}
             {% for publication in international_featured %}
-            <div class="row">
+            <div>
                 <h5>
                     {{publication.content}}
                     {% if publication.link %}
@@ -451,7 +451,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <div class="collapse" id="collapse-international">
                 {% if international %}
                 {% for publication in international %}
-                <div class="row">
+                <div>
                     <h5>
                     {{publication.content}}
                     {% if publication.link %}
@@ -466,7 +466,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </div>
                 {% endfor %}
                 {% else %}
-                <div class="row">
+                <div>
                     <p>No journals</p>
                 </div>
                 {% endif %}
@@ -475,7 +475,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <h3 class="margin-top-20">Domestic Journals</h3>
             {% if domestic_featured %}
             {% for publication in domestic_featured %}
-            <div class="row">
+            <div>
                 <h5>
                     {{publication.content}}
                     {% if publication.link %}
@@ -495,7 +495,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <div class="collapse" id="collapse-domestic">
                 {% if domestic %}
                 {% for publication in domestic %}
-                <div class="row">
+                <div>
                     <h5>
                     {{publication.content}}
                     {% if publication.link %}
@@ -510,7 +510,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </div>
                 {% endfor %}
                 {% else %}
-                <div class="row">
+                <div>
                     <p>No journals</p>
                 </div>
                 {% endif %}
@@ -519,7 +519,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <h3 class="margin-top-20">Books</h3>
             {% if book_featured %}
             {% for publication in book_featured %}
-            <div class="row">
+            <div>
                 <h5>
                     {{publication.content}}
                     {% if publication.link %}
@@ -539,7 +539,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
             <div class="collapse" id="collapse-book">
                 {% if book %}
                 {% for publication in book %}
-                <div class="row">
+                <div>
                     <h5>
                     {{publication.content}}
                     {% if publication.link %}
@@ -554,7 +554,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </div>
                 {% endfor %}
                 {% else %}
-                <div class="row">
+                <div>
                     <p>No books</p>
                 </div>
                 {% endif %}
