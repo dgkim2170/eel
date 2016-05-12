@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from pages.models import Intro, ResearchIntro, Research, Project, \
-						Faculty, Collaborator, Student, Alumnus, Publication, \
+						Faculty, Collaborator, Student, Alumnus, \
 						InternationalJournal, DomesticJournal, Book, \
 						Lecture, UsefulLink, Calender, \
 						PhotographCategory, Photograph, News, Contact

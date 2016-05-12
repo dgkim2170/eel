@@ -171,7 +171,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                                 <h2 class="heading-sm">{{proj.title|safe}}</h2>
 
                                 {% if proj.gmap_lat == '' %}
-                                
+
                                 <div class="col-sm-12">
                                 {{proj.content|safe}}
                                 {% if user.is_superuser %}
@@ -180,7 +180,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                                 </div>
 
                                 {% else %}
-                                
+
                                 <div class="col-sm-9">
                                 {{proj.content|safe}}
                                 {% if user.is_superuser %}
@@ -190,7 +190,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                                 <div class="col-sm-3">
                                     <div id="proj-map-{{proj.id}}" class="height-100"></div>
                                 </div>
-                                
+
                                 {% endif %}
                             </div>
                         </div>
@@ -200,7 +200,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                         <a href="{% url "admin:pages_project_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
                         {% endif %}
                 </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -338,7 +338,12 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <h2>Publications</h2>
             </div>
 
-            <h3>International Journals</h3>
+            <h3>International Journals
+            {% if user.is_superuser %}
+            <div>
+            <a href="{% url "admin:pages_internationaljournal_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+            </div>
+            {% endif %}</h3>
             {% if international_featured %}
             {% for publication in international_featured %}
             <div>
@@ -370,9 +375,9 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     </a>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a href="{% url "admin:pages_internationaljounal_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
+                    <a href="{% url "admin:pages_internationaljournal_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
-                </h5>  
+                </h5>
                 </div>
                 {% endfor %}
                 {% else %}
@@ -382,7 +387,12 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 {% endif %}
             </div>
 
-            <h3 class="margin-top-20">Domestic Journals</h3>
+            <h3 class="margin-top-20">Domestic Journals
+            {% if user.is_superuser %}
+            <div>
+            <a href="{% url "admin:pages_domesticjournal_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+            </div>
+            {% endif %}</h3>
             {% if domestic_featured %}
             {% for publication in domestic_featured %}
             <div>
@@ -416,7 +426,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     {% if user.is_superuser %}
                     <a href="{% url "admin:pages_domesticjournal_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
-                </h5>  
+                </h5>
                 </div>
                 {% endfor %}
                 {% else %}
@@ -426,7 +436,14 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 {% endif %}
             </div>
 
-            <h3 class="margin-top-20">Books</h3>
+            <h3 class="margin-top-20">Books
+            {% if user.is_superuser %}
+            <div>
+            <a href="{% url "admin:pages_book_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
+            </div>
+            {% endif %}
+            </h3>
+
             {% if book_featured %}
             {% for publication in book_featured %}
             <div>
@@ -460,7 +477,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     {% if user.is_superuser %}
                     <a href="{% url "admin:pages_book_change" publication.id %}" target="_blank"><i class="fa fa-gear"></i></a>
                     {% endif %}
-                </h5>  
+                </h5>
                 </div>
                 {% endfor %}
                 {% else %}
@@ -470,11 +487,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 {% endif %}
             </div>
 
-            {% if user.is_superuser %}
-            <div>
-            <a href="{% url "admin:pages_publication_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
-            </div>
-            {% endif %}
+
         </div><!--/end container-->
     </section>
 
@@ -582,7 +595,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                     |
                     {% if photocategories %}
                     {% for cat in photocategories %}
-                    <div data-filter=".{{cat.category}}" class="cbp-filter-item"> {{cat.category_name}} </div> | 
+                    <div data-filter=".{{cat.category}}" class="cbp-filter-item"> {{cat.category_name}} </div> |
                     {% endfor %}
                     {% endif %}
                     {% if user.is_superuser %}
@@ -656,7 +669,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 {% if user.is_superuser %}
                 <a href="{% url "admin:pages_news_add" %}" target="_blank"><i class="fa fa-plus"></i></a>
                 {% endif %}
-        </div>        
+        </div>
     </section>
 
     <section id="contact" class="contacts-section2 bg-color-light">

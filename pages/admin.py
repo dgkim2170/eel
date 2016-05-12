@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from redactor.widgets import RedactorEditor
 
 from pages.models import Intro, ResearchIntro, Research, Project, \
-						Faculty, Collaborator, Student, Alumnus, Publication, \
+						Faculty, Collaborator, Student, Alumnus, \
 						InternationalJournal, DomesticJournal, Book, \
 						Lecture, UsefulLink, Calender, \
 						PhotographCategory, Photograph, News, Contact
@@ -63,7 +63,7 @@ class ResearchIntroAdminForm(forms.ModelForm):
 		fields = ('text',)
 class ResearchIntroAdmin(DefaultAdmin):
 	form = ResearchIntroAdminForm
-admin.site.register(ResearchIntro, ResearchIntroAdmin)		
+admin.site.register(ResearchIntro, ResearchIntroAdmin)
 
 class FacultyAdminForm(forms.ModelForm):
 	content = forms.CharField(widget = RedactorEditor())
@@ -104,7 +104,6 @@ class PublicationAdmin(DefaultAdmin):
 	# form = PublicationAdminForm
 	list_display = ('__unicode__', 'rank', 'featured',)
 	list_editable = ('rank', 'featured')
-admin.site.register(Publication, PublicationAdmin)
 admin.site.register(InternationalJournal, PublicationAdmin)
 admin.site.register(DomesticJournal, PublicationAdmin)
 admin.site.register(Book, PublicationAdmin)

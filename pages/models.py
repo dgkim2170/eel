@@ -88,22 +88,6 @@ class Alumnus(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class Publication(models.Model):
-	CATEGORY = (
-		('international', 'International Journals'),
-		('domestic', 'Domestic Journals'),
-		('book', 'Books'),
-	)
-	content = models.CharField(max_length=1000, blank=True, null=True)
-	category = models.CharField(max_length=255, choices=CATEGORY)
-	link = models.CharField(max_length=255, blank=True, null=True)
-	featured = models.BooleanField(default=False)
-	rank = models.IntegerField()
-	updated = models.DateTimeField(auto_now=True)
-	made = models.DateTimeField(auto_now_add=True)
-	def __unicode__(self):
-		return '[%s]%s'%(self.category, self.content)
-
 class InternationalJournal(models.Model):
 	content = models.CharField(max_length=1000, blank=True, null=True)
 	link = models.CharField(max_length=255, blank=True, null=True)
@@ -133,7 +117,7 @@ class Book(models.Model):
 	made = models.DateTimeField(auto_now_add=True)
 	def __unicode__(self):
 		return self.content
-		
+
 class Lecture(models.Model):
 	title = models.CharField(max_length=255, blank=True, null=True)
 	small_description = models.CharField(max_length=255, blank=True, null=True)
